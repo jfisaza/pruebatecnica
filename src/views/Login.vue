@@ -56,19 +56,21 @@ export default {
 
             // envía petición para loguear al usuario
             axios.post(api+'login', { usuario: usuario.value, contraseña: contraseña.value }).then(response => {
-                store.setUser(response.data.user)
+                store.setUser(response.data.data)
                 store.setToken(response.data.token)
+                localStorage.setItem('token',response.data.token)
                 router.replace({ path: '/home' })
             }).catch(error => {
                 console.log(error)
-                if(error.response.status == 422){
+                if(error.response.data.status == 422){
                     swal.fire({
                         icon: 'error',
                         title: 'Opps!',
-                        text: 'Usuario o contraseña incorrectos.',
+                        text: error.response.data.message,
                         timer: 2000,
                         showConfirmButton: false
                     })
+                    return
                 }
                 swal.fire({
                     icon: 'error',

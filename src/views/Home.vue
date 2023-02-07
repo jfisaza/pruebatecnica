@@ -27,7 +27,7 @@
                         <span>{{ userData.correo }}</span>
                         <br>
                         <b>Saldo: </b>
-                        <span>{{ userData.saldo }}</span>
+                        <span>{{ saldoEnDolar }}</span>
                     </div>
                 </div>
             </article>
@@ -57,7 +57,7 @@
 </template>
 <script>
 import Logout from '../components/Logout.vue'
-import { ref, onMounted, inject } from 'vue'
+import { ref, onMounted, inject, computed } from 'vue'
 import { useStore } from '../store'
 import { useRouter } from 'vue-router'
 
@@ -68,6 +68,7 @@ export default {
     setup(){
         const axios = inject('axios')
         const swal = inject('$swal')
+        const api = inject('api')
 
         const store = useStore()
         const router = useRouter()
@@ -81,13 +82,35 @@ export default {
             saldo: 0
         })
 
+        const saldoEnDolar = computed(() => {
+            const options = { style: 'currency', currency: 'USD' };
+            const currency = new Intl.NumberFormat('en-US', options);
+            if(!userData.value.saldo) return currency.format(0)
+            return currency.format(userData.value.saldo)
+        })
+
         onMounted(() => {
             userData.value = store.user
-            if(Object.values(userData.value).length == 0) router.replace('/')
+            if(Object.values(userData.value).length == 0){
+                let token = localStorage.getItem('token')
+                if(token && token != ''){
+                    axios.get(api+'getUser', {
+                        headers: {
+                            authorization: token
+                        }
+                    }).then(response => {
+                        store.setUser(response.data.data)
+                        userData.value = response.data.data
+                    }).catch(error => {
+                        router.replace('/')
+                    })
+                }
+            }
         })
 
         return{
-            userData
+            userData,
+            saldoEnDolar
         }
     }
 }

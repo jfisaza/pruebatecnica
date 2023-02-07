@@ -30,6 +30,7 @@ export default {
         const logout = () => {
             store.setUser({})
             store.setToken('')
+            localStorage.setItem('token',"")
             router.replace('/')
         }
 
