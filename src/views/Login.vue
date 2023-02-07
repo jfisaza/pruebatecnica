@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label for="contraseña">Contraseña</label>
                 <br>
-                <input name="contraseña" type="password" v-model="contraseña">
+                <input name="contraseña" type="password" v-model="contraseña" @keypress.enter="singin">
             </div>
             <div class="register">
                 <RouterLink to="/register">Registrarse</RouterLink>
@@ -61,7 +61,6 @@ export default {
                 localStorage.setItem('token',response.data.token)
                 router.replace({ path: '/home' })
             }).catch(error => {
-                console.log(error)
                 if(error.response.data.status == 422){
                     swal.fire({
                         icon: 'error',

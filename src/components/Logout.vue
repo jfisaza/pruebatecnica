@@ -1,6 +1,6 @@
 <template lang="">
-    <div>
-        <div class="boton" @click="togglePopover"><font-awesome-icon icon="fa-solid fa-user" /></div>
+    <div @mouseover="open = true" @mouseleave="open = false">
+        <div class="boton"><font-awesome-icon icon="fa-solid fa-user" /></div>
         <div class="popover" v-if="open">
             <div>
                 <div class="triangulo"></div>

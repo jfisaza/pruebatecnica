@@ -33,6 +33,15 @@ a:active{
 	color: #00BD7E;
 }
 
+header{
+	padding: 5px;
+	display: flex;
+}
+
+header div{
+	margin-left: auto;
+}
+
 .card{
 	border-radius: 10px;
 	padding: 15px;
@@ -46,4 +55,29 @@ a:active{
 
 .card-body{
 	margin-top: 10px;
+}
+
+table{
+	width: 100%;
+}
+
+thead tr th{
+	background-color: #00BD7E;
+}
+
+thead tr th:nth-child(1){
+	border-top-left-radius: 5px;
+}
+
+thead tr th:nth-last-child(1){
+	border-top-right-radius: 5px;
+}
+
+th{
+	padding: 5px;
+	color: white;
+}
+
+td{
+	padding: 5px;
 }

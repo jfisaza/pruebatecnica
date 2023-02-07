@@ -1,4 +1,5 @@
 <template lang="">
+    <!-- Formulario de registro de usuario -->
     <section>
         <article>
             <div>
