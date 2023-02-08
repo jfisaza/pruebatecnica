@@ -3,7 +3,7 @@
         <article>
             <div class="title"><h2>Iniciar sesión</h2></div>
             <div class="form-group">
-                <label for="usuario">Correo electrónico o teléfono</label>
+                <label for="usuario">Correo electrónico</label>
                 <br>
                 <input name="usuario" type="text" v-model="usuario">
             </div>
