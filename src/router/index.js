@@ -5,6 +5,7 @@ import Home from "../views/Home.vue";
 import Transferir from "../views/Transferir.vue";
 import CargarSaldo from "../views/CargarSaldo.vue";
 import ActualizarDatos from "../views/ActualizarDatos.vue";
+import Tienda from "../views/Tienda.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: "/actualizarDatos",
       name: "actualizarDatos",
       component: ActualizarDatos,
+    },
+    {
+      path: "/tienda",
+      name: "tienda",
+      component: Tienda,
     }
   ],
 });

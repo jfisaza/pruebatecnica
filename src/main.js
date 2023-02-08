@@ -30,6 +30,6 @@ app.use(pinia)
 app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.provide('axios', app.config.globalProperties.axios)
-app.provide('api','https://api-pruebatecnica.onrender.com/api/')
+app.provide('api','http://api-pruebatecnica.onrender.com/api/')
 
 app.mount("#app");
