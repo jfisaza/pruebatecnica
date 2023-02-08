@@ -92,6 +92,17 @@ export default {
         // Enviar data
         const enviar = () => {
 
+            if(data.nroTarjeta == '' || data.fechaExpira == '' || data.codigo == '' || data.nombre == '' || data.valor == ''){
+                swal.fire({
+                    icon: 'error',
+                    title: 'Opps!',
+                    text: 'Debe llenar todos los campos para realizar la recarga.',
+                    timer: 2000,
+                    showConfirmButton: false
+                })
+                return
+            }
+
             if(data.valor == '' || parseInt(data.valor) < 5000){
                 swal.fire({
                     icon: 'error',

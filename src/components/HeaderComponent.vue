@@ -1,6 +1,6 @@
 <template>
     <header class="success">
-        <h2>Prueba</h2>
+        <h2>NIQUE</h2>
         <div>
             <logout></logout>
         </div>

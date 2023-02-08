@@ -45,6 +45,11 @@
                         <br>
                         Cargar saldo
                     </div>
+                    <div class="action" @click="recuperarPin">
+                        <font-awesome-icon class="icono" icon="fa-solid fa-keyboard" />
+                        <br>
+                        Recuperar pin
+                    </div>
                 </div>
             </article>
             <!-- TRANSACCIONES -->
@@ -89,6 +94,7 @@ export default {
     setup(){
         const axios = inject('axios')
         const api = inject('api')
+        const swal = inject('$swal')
 
         const store = useStore()
         const router = useRouter()
@@ -138,8 +144,23 @@ export default {
             })
         }
 
+        const recuperarPin = () => {
+            axios.get(api+'recuperarPin/'+store.user._id, {
+                headers: {
+                    authorization: store.token
+                }
+            }).then(response => {
+                swal.fire({
+                    icon: 'success',
+                    title: 'Éxito',
+                    text: 'Su pin es: '+response.data.pin
+                })
+                return
+            })
+        }
+
         const redirect = (route) => {
-            router.replace(route)
+            router.push(route)
         }
 
         // Se toma la información del store, si no hay, se consulta por el token y si ya expiró o no existe un usuario con el token
@@ -171,7 +192,8 @@ export default {
             userData,
             saldoEnDolar,
             redirect,
-            transacciones
+            transacciones,
+            recuperarPin
         }
     }
 }

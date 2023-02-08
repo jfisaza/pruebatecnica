@@ -81,3 +81,7 @@ th{
 td{
 	padding: 5px;
 }
+
+.swal2-confirm.swal2-styled{
+	background-color: #00BD7E !important;
+}
